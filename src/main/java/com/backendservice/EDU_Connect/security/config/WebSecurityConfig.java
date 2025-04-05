@@ -6,6 +6,7 @@ import com.backendservice.EDU_Connect.security.services.UserDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,6 +28,9 @@ import java.util.Arrays;
 @Configuration
 @EnableMethodSecurity
 public class WebSecurityConfig {
+
+    @Value("${frontend}")
+    private String url;
 
     private static final Logger logger = LoggerFactory.getLogger(WebSecurityConfig.class);
 
@@ -66,7 +70,7 @@ public class WebSecurityConfig {
     "http://localhost:5173",
 //                "http://127.0.0.1:5000",
                 "http://192.168.137.1:5173",
-                "http://192.168.120.38:5173"
+                "http://192.168.120.38:5173",url
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
